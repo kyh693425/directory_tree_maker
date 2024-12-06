@@ -23,6 +23,10 @@ def print_tree(directory, prefix="", add_space=False):
         return
 
     for i, entry in enumerate(entries):
+        # 隠しファイル・ディレクトリを除外
+        if entry.startswith('.'):
+            continue
+
         path = os.path.join(directory, entry)
         is_last = (i == len(entries) - 1)  # 最後のエントリかどうかを判定
         connector = LAST_BRANCH if is_last else BRANCH
